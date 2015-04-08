@@ -11,9 +11,13 @@ var outer = function(){
 
   //Code Here
 
+  var inner = outer();
+
 //Once you do that, invoke inner.
 
   //Code Here
+
+  inner();
 
 
 
@@ -34,6 +38,8 @@ var callFriend = function(){
 
   //Code Here
 
+var toInvoke = callFriend();
+toInvoke("435-215-9248");
 
 
 //Next Problem
@@ -43,13 +49,19 @@ var callFriend = function(){
 /*
   Write a function called makeCounter that makes the following code work properly.
 */
+  var makeCounter = function() {
+    var counter = 1;
+    return function() {
+      return counter++;
+    };
+  };
 
   //Code Here
   var count = makeCounter();
-  count() // 1
-  count() // 2
-  count() // 3
-  count() // 4
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -64,6 +76,26 @@ var callFriend = function(){
   After the function has been called N number of times, console.log('STAHHP');
 */
 
+var heyNow = function(fn, n) {
+  var count = 0;
+  return function() {
+    if (count < n) { //TODO
+      count++;
+      fn();
+    }
+    else {
+      console.log("STAHHP");
+    }
+  };
+};
 
+var inner = heyNow(function(){
+  console.log("running");
+}, 4);
 
+inner(); //>> "running"
+// inner(); //>> "running"
+// inner(); //>> "running"
+// inner(); //>> "running"
+// inner(); //>> "STAHHP"
 
